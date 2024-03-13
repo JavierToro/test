@@ -1,0 +1,132 @@
+
+#navbarDropdown {
+    transition: background-color 0.15s ease-in-out; /* Agrega una transición suave */
+    border-radius: 10px;
+}
+#navbarDropdown:hover {
+    background-color: #0000006c; /* Cambia el color de fondo al pasar el mouse por encima */
+    border-radius: 10px;
+}
+
+#elementos_header{
+    transition: background-color 0.15s ease-in-out; /* Agrega una transición suave */
+    border-radius: 10px;
+}
+#elementos_header:hover {
+    background-color: #0000006c; /* Cambia el color de fondo al pasar el mouse por encima */
+    border-radius: 10px;
+}
+
+.responsive-img {
+    display: block;
+    max-width: 100%;
+    max-height: 500px; /* Ajusta este valor para imágenes horizontales */
+    width: auto;
+    height: auto;
+    margin: 0 auto; /* Centrar horizontalmente */
+    object-fit: contain;
+}
+
+body{
+    background-color: rgb(250,248,233);
+}
+
+body .gallery{
+    margin: 1em;
+}
+.gallery img{
+    max-width: 100%;
+    margin-bottom: 0.5em;
+    display: block;
+    /*outline: 2px solid #fff;*/
+    /*outline-offset: -10px;*/
+    /*object-fit: cover;*/
+}
+
+.gallery{
+    columns: 4 320px;
+    column-gap: 0.5em;
+    /*display: grid;*/
+    /*grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));*/
+    /*flex-wrap: wrap;*/
+    /*align-items: start;*/
+}
+
+
+button{
+    background-color: rgb(72, 2, 2);
+}
+
+/* Estilo para los enlaces dentro de botones con clase btn-secondary */
+.btn-secondary a {
+    color: #fff;
+    text-decoration: none; /* Esto quita la subrayado predeterminado */
+}
+
+/* Estilo para los enlaces dentro de botones con ID mi_elemento */
+#mi_elemento a {
+    color: #fff;
+    text-decoration: none; /* Esto quita la subrayado predeterminado */
+}
+
+.card-img {
+  padding: 15px; /* Cambia "10px" por el valor de margen deseado */
+}
+
+.image-hover {
+    position: relative;
+    
+  }
+  
+  .image-hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-hover:hover::before {
+    opacity: 1;
+  }
+  
+  .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-hover:hover .image-text {
+    opacity: 1;
+  }
+
+  .custom-button {
+    background-color: rgb(255, 207, 83);
+    color: rgb(100, 2, 2);
+    font-weight: bold;
+  }
+  
+  .custom-button:hover {
+    background-color: rgb(100, 2, 2);
+    border-color: rgb(255, 207, 83);
+    color: rgb(255, 207, 83);
+    font-weight: bold;
+  }
+  #search-form {
+    flex-grow: 1;
+  }
+  
+  .element-header {
+    padding: 10px;
+}

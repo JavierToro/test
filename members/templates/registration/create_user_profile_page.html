@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}ArteContigo - Crea Tu Biografía{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+	<h1>Crea Tu Biografía</h1>
+	<br/><br/>
+
+	<div class="form-group">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			{{ form.as_p }}
+			<button class="btn btn-secondary">Crear Biografía</button>
+	</div>
+
+	
+
+{% else %}
+	<!--en este else se utiliza por si alguien quiere acceder mediante la url sin estar identificado-->
+	{% url 'home' as login_url %}
+	{% if login_url %}
+		{% autoescape off %}
+			<script>
+				window.location.href = "{% url 'home' %}";
+			</script>
+		{% endautoescape %}
+	{% endif %}
+{% endif %}
+
+{% endblock %}

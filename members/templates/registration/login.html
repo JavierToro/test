@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}ArteContigo - Iniciar Sesión{% endblock %}
+{% block content %}
+
+{% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+    <p class="alert alert-danger my-3">{{error}}</p>
+  {% endfor %}
+{% endif %}    
+
+<h1>Ingresa a ArteContigo</h1>
+<br/><br/>
+
+<div class="form-group">
+    <form id="loginForm" method="POST">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <input type="text" class="form-control" name="username" id="username" placeholder="Usuario" value="{{ form.username.value|default_if_none:'' }}">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+      </div>
+      
+      <br/>
+      <button class="btn btn-secondary">Iniciar Sesión</button>
+    </form>
+  </div>
+  
+  <script>
+    // Obtener el formulario
+    const form = document.getElementById('loginForm');
+    
+    // Al enviar el formulario
+    form.addEventListener('submit', function(event) {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      // Si el campo de usuario está vacío
+      if (!username.trim()) {
+        event.preventDefault(); // Evitar el envío del formulario
+      }
+    });
+  </script>
+
+<br/>
+
+No Estás Registrado? Inicia Sesión <a href="{% url 'register' %}">Aquí...</a>
+
+<br/><br/>
+<a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}ArteContigo - Configuración{% endblock %}
+{% block content %}
+
+<h1>Configuración</h1>
+{% if user.is_authenticated %}
+	<br/>
+	<div class="form-group">
+		<form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button id="mi_elemento" class="btn btn-secondary"><a href="{% url 'change-password' %}">Cambiar contraseña</a></button>
+			<br/><br/>
+			<button class="btn btn-secondary" type="submit">Actualizar</button>
+	</div>
+	
+	
+{% else %}
+	<!--en este else se utiliza por si alguien quiere acceder mediante la url sin estar identificado-->
+	{% url 'home' as login_url %}
+	{% if login_url %}
+		{% autoescape off %}
+			<script>
+				window.location.href = "{% url 'home' %}";
+			</script>
+		{% endautoescape %}
+	{% endif %}
+{% endif %}
+
+{% endblock %}

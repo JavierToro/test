@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}ArteContigo - Editar Perfil{% endblock %}
+{% block content %}
+
+    
+{% if user.is_authenticated %}
+	{% if user.id == profile.user.id %}
+		<h1>Editar Perfil</h1>
+		<br/>
+
+		<div class="form-group">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn btn-secondary">Actualizar</button>
+		</div>
+
+	{% else %}
+		<!--en este else se utiliza por si alguien quiere acceder mediante la url sin estar identificado-->
+		{% url 'home' as login_url %}
+		{% if login_url %}
+			{% autoescape off %}
+				<script>
+					window.location.href = "{% url 'home' %}";
+				</script>
+			{% endautoescape %}
+		{% endif %}
+	{% endif %}
+
+{% else %}
+	<!--en este else se utiliza por si alguien quiere acceder mediante la url sin estar identificado-->
+	{% url 'home' as login_url %}
+	{% if login_url %}
+		{% autoescape off %}
+			<script>
+				window.location.href = "{% url 'home' %}";
+			</script>
+		{% endautoescape %}
+	{% endif %}
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}ArteContigo - {{ page_user.user.first_name }} {{ page_user.user.last_name }}{% endblock %}
+{% load static %}
+
+
+{% block content %}
+<br/>
+
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-2">
+		{% if page_user.profile_pic %}
+			<img src="{{ page_user.profile_pic.url }}" class="card-img" id="">
+
+		{% else %}
+			<img src="{% static 'theblog/images/default_profile_pic.png' %}" class="card-img">
+		{% endif %}
+	</div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">
+        	{{ page_user.user.first_name }} 
+			{{ page_user.user.last_name }}
+		</h5>
+
+		<p class="small text-muted">
+			{% if page_user.facebook_url %}
+				<a href="{{ page_user.facebook_url }}">
+					<img src="{% static 'theblog/images/facebook.png' %}" alt="Facebook" style="width: 34px; height: 34px;">
+				</a>  
+			{% endif %}
+
+			{% if page_user.twitter_url %}
+				<a href="{{ page_user.profile.twitter_url }}">
+					<img src="{% static 'theblog/images/twitter.png' %}" alt="Twitter" style="width: 34px; height: 34px;">
+				</a> 
+			{% endif %}
+
+			{% if page_user.instagram_url %}
+				<a href="{{ page_user.profile.instagram_url }}">
+					<img src="{% static 'theblog/images/instagram.png' %}" alt="Instagram" style="width: 34px; height: 34px;">
+				</a>
+			{% endif %}
+		</p>
+
+		<p class="card-text">
+        	{{ page_user.bio }}
+        </p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Portafolio:</h2>
+<hr>
+<div class="gallery">
+	{% for i in portafolio %}
+		{% if i.header_image %}
+			{% if i.author.id == page_user.user.id %}
+                <a href="{% url 'article-detail' i.pk %}">
+                    <div class="image-hover">
+                        <img src="{{ i.header_image.url }}" alt="">
+                        <div class="image-text"> {{ i.title }} <br/><small>{{ i.author.first_name }} {{ i.author.last_name }} </small></div>
+                    </div>
+                </a>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+</div>
+
+
+
+<h2>Ventas:</h2>
+<hr>
+<div class="gallery">
+	{% for venta in ventas_list %}
+		{% if venta.header_image %}
+			{% if venta.author.id == page_user.user.id %}
+				<a href="{% url 'venta-detail' venta.pk %}">
+					<div class="image-hover">
+						<img src="{{ venta.header_image.url }}" alt="">
+							<div class="image-text">{{ venta.title }} 
+								<br/>
+								Disponibles: {{ venta.stock }}
+								<br/>
+								<small>
+									{{ venta.author.first_name }} {{ venta.author.last_name }}
+								</small>
+							</div>
+					</div>
+				</a>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}
